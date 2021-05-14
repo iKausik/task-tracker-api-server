@@ -1,8 +1,6 @@
 const { Pool } = require("pg");
 require("custom-env").env(true);
 
-console.log(process.env.TASK_APP_HOST);
-
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
