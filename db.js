@@ -1,6 +1,13 @@
-const { Pool, Client } = require("pg");
+const { Pool } = require("pg");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
   user: process.env.HEROKU_PSQL_USER || "postgres",
   password: process.env.HEROKU_PSQL_PASSWORD || "hello@sql",
   host: process.env.HEROKU_PSQL_HOST || "localhost",
@@ -8,21 +15,15 @@ const pool = new Pool({
   database: process.env.HEROKU_PSQL_DATABASE || "task-tracker",
 });
 
-const client = new Client({
-  user: process.env.HEROKU_PSQL_USER || "postgres",
-  password: process.env.HEROKU_PSQL_PASSWORD || "hello@sql",
-  host: process.env.HEROKU_PSQL_HOST || "localhost",
-  port: process.env.HEROKU_PSQL_PORT || 5432,
-  database: process.env.HEROKU_PSQL_DATABASE || "task-tracker",
-});
-client.connect();
-
-client.query(
-  "CREATE TABLE tasks(id SERIAL PRIMARY KEY, text VARCHAR(255) NOT NULL, day VARCHAR(255) NOT NULL, reminder VARCHAR(255) NOT NULL)",
-  (err, res) => {
-    console.log(err, res);
-    client.end();
+const execute = async () => {
+  try {
+    await pool.query(
+      "CREATE TABLE tasks(id SERIAL PRIMARY KEY, text VARCHAR(255) NOT NULL, day VARCHAR(255) NOT NULL, reminder VARCHAR(255) NOT NULL)"
+    );
+  } catch (err) {
+    console.error(err.message);
   }
-);
+};
+execute();
 
 module.exports = pool;

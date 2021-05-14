@@ -1,9 +1,11 @@
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
 const database = require("./db");
 
 const app = express();
+dotenv.config();
 const port = process.env.PORT || 4000;
 
 // MIDDLEWARE
