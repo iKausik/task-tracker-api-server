@@ -6,7 +6,7 @@ console.log(process.env.HOST);
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: process.env.REJECT_UNAUTH,
+    rejectUnauthorized: false,
   },
   user: process.env.USER,
   password: process.env.PASSWORD,
