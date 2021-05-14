@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^9.0.2",
+    "cross-env": "^7.0.3",
+    "custom-env": "^2.0.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "pg": "^8.6.0"
