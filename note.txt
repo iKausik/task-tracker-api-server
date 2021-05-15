@@ -1,0 +1,8 @@
+To download your deployed app code from heroku:
+
+ first install the heroku-slugs plugin
+  =>  heroku plugins:install heroku-slugs
+
+ then download the code
+  =>  heroku slugs:download -a APP_NAME
+

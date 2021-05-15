@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+// production server config
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -14,6 +15,15 @@ const pool = new Pool({
   port: process.env.HEROKU_PSQL_PORT || 5432,
   database: process.env.HEROKU_PSQL_DATABASE || "task-tracker",
 });
+
+// development server config
+// const pool = new Pool({
+//   user: "postgres",
+//   password: "hello@sql",
+//   host: "localhost",
+//   port: 5432,
+//   database: "task-tracker",
+// });
 
 const execute = async () => {
   try {
