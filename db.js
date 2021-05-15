@@ -1,16 +1,17 @@
 const { Pool } = require("pg");
-require("custom-env").env(true);
+require("dotenv").config();
+// require("custom-env").env(true);
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
-  user: process.env.TASK_APP_USER,
-  password: process.env.TASK_APP_PASSWORD,
-  host: process.env.TASK_APP_HOST,
-  port: process.env.TASK_APP_PORT,
-  database: process.env.TASK_APP_DATABASE,
+  user: process.env.TASK_APP_USER || "postgres",
+  password: process.env.TASK_APP_PASSWORD || "hello@sql",
+  host: process.env.TASK_APP_HOST || "localhost",
+  port: process.env.TASK_APP_PORT || 5432,
+  database: process.env.TASK_APP_DATABASE || "task-tracker",
 });
 
 const execute = async () => {

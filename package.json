@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "cross-env NODE_ENV=production nodemon index.js",
-    "start": "cross-env NODE_ENV=production nodemon index.js",
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,6 +13,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "custom-env": "^2.0.1",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "pg": "^8.6.0"
