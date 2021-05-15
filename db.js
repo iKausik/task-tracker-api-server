@@ -1,15 +1,18 @@
 const { Pool } = require("pg");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },
-  user: process.env.TASK_APP_USER || "postgres",
-  password: process.env.TASK_APP_PASSWORD || "hello@sql",
-  host: process.env.TASK_APP_HOST || "localhost",
-  port: process.env.TASK_APP_PORT || 5432,
-  database: process.env.TASK_APP_DATABASE || "task-tracker",
+  user: process.env.HEROKU_PSQL_USER || "postgres",
+  password: process.env.HEROKU_PSQL_PASSWORD || "hello@sql",
+  host: process.env.HEROKU_PSQL_HOST || "localhost",
+  port: process.env.HEROKU_PSQL_PORT || 5432,
+  database: process.env.HEROKU_PSQL_DATABASE || "task-tracker",
 });
 
 const execute = async () => {
